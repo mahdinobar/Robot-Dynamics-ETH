@@ -2,19 +2,19 @@ function [] = motion_control_visualization()
 % Motor control visualization script
 
 % ============== Trajectory settings ======================
-ts = 0.05;                          % Set the sampling time (in seconds)
-r_start = [0.4 0.1 0.6].';          % 3x1 (m)
-r_end = [-0.4 0.3 0.5].';           % 3x1 (m)
-v_line = 0.4;                       % 1x1 (m/s)
+ts = 0.01;                          % Set the sampling time (in seconds) [time between each control command or time between each steps]
 q_0 = zeros(6,1);                   % 6x1 (rad)
-use_solution = 0;                   % 0: user implementation, 1: solution               
+% Initialize the vector of generalized coordinates
+q = q_0;
+r_start = jointToPosition_solution(q_0); % 3x1 (m)
+r_end = [0.5 0.3 0.2].';           % 3x1 (m)
+v_line = 0.2;                       % 1x1 (m/s) constant EE speed
+use_solution = 1;                   % 0: user implementation, 1: solution               
 % =========================================================
 
 % Load the visualization
 f1 = figure(1); close(f1); loadviz;
 
-% Initialize the vector of generalized coordinates
-q = q_0;
 abbRobot.setJointPositions(q);
 
 % Generate a new desired trajectory
