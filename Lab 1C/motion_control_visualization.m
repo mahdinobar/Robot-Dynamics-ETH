@@ -2,13 +2,14 @@ function [] = motion_control_visualization()
 % Motor control visualization script
 
 % ============== Trajectory settings ======================
-ts = 0.01;                          % Set the sampling time (in seconds) [time between each control command or time between each steps]
-q_0 = zeros(6,1);                   % 6x1 (rad)
+ts = 0.05;                          % Set the sampling time (in seconds) [time between each control command or time between each steps]
+q_0 = zeros(6,1)+deg2rad([-30 45 0 0 30 00].');                   % 6x1 (rad)
 % Initialize the vector of generalized coordinates
 q = q_0;
 r_start = jointToPosition_solution(q_0); % 3x1 (m)
-r_end = [0.5 0.3 0.2].';           % 3x1 (m)
-v_line = 0.2;                       % 1x1 (m/s) constant EE speed
+r_end = r_start + [0 0.4 0].';
+% r_end = [0.5 0.3 0.2].';           % 3x1 (m)
+v_line = 0.1;                       % 1x1 (m/s) constant EE speed
 use_solution = 1;                   % 0: user implementation, 1: solution               
 % =========================================================
 

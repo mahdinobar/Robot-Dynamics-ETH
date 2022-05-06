@@ -102,7 +102,7 @@ classdef IRB120Visualization < handle
 
             % Fix view range
             viewscale = 0.5;
-            viewlim3d = [-1 1 -1 1 0 2];
+            viewlim3d = [-2 2 -2 2 0 2];
             axis(obj.vizAx_, viewscale*viewlim3d);
 
             % Initialize body transforms for links which move
